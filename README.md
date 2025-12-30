@@ -1,13 +1,13 @@
 # Pentest Automation Scripts
 
 Colección de **scripts en Bash** orientados a **pentesting y red team**, diseñados para automatizar tareas comunes de reconocimiento, enumeración y organización, sin perder control ni claridad.
-Estos Scripts  me han ayudado bastante para realizar prácticas de laboratorio en INE y me han ayudado a realizar el propio examen de ECCPT.
+Estos Scripts  me han ayudado a realizar prácticas en entornos controlados y en la realización de exámenes con límite de tiempo como el ECCPT. 
 
 Este repositorio prioriza:
-- metodología real de auditoría
+
 - scripts pequeños y reutilizables
 - outputs limpios y útiles
-- enfoque ético y profesional
+- enfoque ético 
 
 ---
 
