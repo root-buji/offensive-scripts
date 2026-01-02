@@ -1,13 +1,30 @@
-#  Offensive Web Scripts
+# Web Pentesting Scripts
 
-Colección de scripts en Bash para automatizar tareas de reconocimiento y fuzzing ofensivo en aplicaciones web
+Automatizaciones ofensivas para reconocimiento, escaneo, fuzzing y detección de vectores en entornos web.
 
-| Script                   | Descripción                                                                 |
-|--------------------------|-----------------------------------------------------------------------------|
-| `autofilter_web.sh`      | Filtra resultados HTTP para identificar respuestas útiles en fuzzing.      |
-| `backup_fuzz.sh`         | Busca backups comunes (`.zip`, `.tar.gz`, `.sql`, `.bak`, etc.) por nombre.|
-| `enum_dirs_gobuster.sh`  | Wrapper para usar Gobuster con wordlists y output limpio.                  |
-| `ffuf_tool.sh`           | Herramienta interactiva con menú para fuzzing de directorios y subdominios.|
-| `scan_base_web.sh`       | Escaneo básico de una URL (headers, whatweb).                              |
-| `wp_fuzzer.sh`           | Detección de archivos sensibles específicos de WP                          |
+Organizado en dos categorías:
+
+-  **Scan** – Detección de tecnologías, métodos HTTP, headers, servicios
+-  **Fuzzers** – Descubrimiento de directorios, archivos, backups, subdominios y bypasses
+
+---
+
+## Tabla de Scripts
+
+| Script                         | Categoría | Descripción breve |
+|-------------------------------|-----------|--------------------|
+| `scan_base_web.sh`            | Scan      | Probing automático por puertos web (80, 443, 8080...) con `curl` y `whatweb`. Guarda headers y tecnologías |
+| `http_methods_tester.sh`      | Scan      | Detecta métodos HTTP peligrosos como `PUT`, `DELETE`, `TRACE`, posibles vectores RCE                       |
+| `ffuf_fuzz.sh`                | Fuzzer    | Fuzzing de directorios y archivos con `ffuf`, permite definir wordlist, extensión y hilos |
+| `gobuster_fuzz.sh`            | Fuzzer    | Alternativa a FFUF usando `gobuster`, ideal para entornos sin Go |
+| `wp_fuzz.sh`                  | Fuzzer    | Fuzzing dirigido a rutas sensibles en WordPress (`wp-login.php`, backups, XML-RPC, etc.) |
+| `backup_fuzz.sh`              | Fuzzer    | Busca archivos de backup comunes: `.bak`, `.zip`, `.tar.gz`, `.old` |
+| `autofilter_web.sh`           | Fuzzer    | Filtra resultados de fuzzing para eliminar falsos positivos y organizar output útil |
+
+---
+
+## Requisitos
+
+- `ffuf`, `gobuster`, `curl`, `whatweb`
+- Wordlists (`SecLists`, `rockyou.txt`, etc.)
 
