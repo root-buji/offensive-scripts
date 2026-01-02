@@ -2,7 +2,7 @@ Fuerza Bruta de Servicios
 
 Contiene scripts para automatizar ataques de fuerza bruta sobre servicios comunes como SSH y SMB (Usados en labs de ECCPT para probar distintos wordlists rapidamente)
 
-## 📄 Scripts
+## Scripts
 
 ### `ssh_brute.sh`
 - Usa `hydra` para probar combinaciones de usuarios y contraseñas
