@@ -25,7 +25,7 @@ Este toolkit depende de herramientas comunes en entornos de hacking:
 - `gobuster`
 - `whatweb`
 - `curl`
-- Wordlists 
+-  `Wordlists`
 
 ---
 
