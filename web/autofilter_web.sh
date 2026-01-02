@@ -64,11 +64,11 @@ done
 
 command -v curl >/dev/null 2>&1 || { echo "[-] curl no está instalado" >&2; exit 1; }
 
-# Normaliza BASE_PATH para que empiece y termine con /
+
 [[ "$BASE_PATH" != /* ]] && BASE_PATH="/$BASE_PATH"
 [[ "$BASE_PATH" != */ ]] && BASE_PATH="$BASE_PATH/"
 
-# Extrae host/port para carpeta (simple, suficiente)
+
 hostport="$(echo "$URL" | sed -E 's#^[a-zA-Z]+://##' | sed -E 's#/.*$##')"
 host="$(echo "$hostport" | cut -d: -f1)"
 port="$(echo "$hostport" | awk -F: '{print ($2=="" ? "default" : $2)}')"
@@ -82,8 +82,6 @@ CURL_COMMON=(-sS --connect-timeout "$TIMEOUT" --max-time "$TIMEOUT")
 [[ $INSECURE -eq 1 ]] && CURL_COMMON+=(-k)
 
 rand_path() {
-  # pseudo-UUID sin depender de uuidgen
-  # shellcheck disable=SC2016
   printf '%s-%s-%s-%s-%s' \
     "$(tr -dc 'a-f0-9' </dev/urandom | head -c 8)" \
     "$(tr -dc 'a-f0-9' </dev/urandom | head -c 4)" \
@@ -100,21 +98,19 @@ echo "[*] Output:     $OUTFILE"
 [[ $INSECURE -eq 1 ]] && echo "[*] TLS:        insecure (-k)"
 [[ $DEBUG -eq 1 ]] && echo "[*] Debug:      ON"
 
-# Arrays para métricas
+
 declare -a codes=()
 declare -a sizes=()
 declare -a words=()
 declare -a lines=()
 declare -a test_urls=()
 
-# Función para medir body (para words/lines) y status/size
+
 measure_one() {
   local full_url="$1"
   local tmp
   tmp="$(mktemp)"
 
-  # Descargamos body a tmp, y sacamos status+size de curl
-  # size_download = bytes del body
   local meta
   meta="$(curl "${CURL_COMMON[@]}" -o "$tmp" -w "%{http_code} %{size_download}\n" "$full_url" || true)"
 
@@ -122,7 +118,7 @@ measure_one() {
   code="$(awk '{print $1}' <<<"$meta")"
   size="$(awk '{print $2}' <<<"$meta")"
 
-  # Si no hay respuesta, curl suele dar code vacío/000
+
   [[ -z "$code" ]] && code="000"
   [[ -z "$size" ]] && size="0"
 
@@ -139,7 +135,7 @@ measure_one() {
   lines+=("$l")
 }
 
-# Ejecutar pruebas
+
 for ((i=1; i<=COUNT; i++)); do
   rp="$(rand_path)"
   full="${URL%/}${BASE_PATH}${rp}"
@@ -148,7 +144,7 @@ for ((i=1; i<=COUNT; i++)); do
   measure_one "$full"
 done
 
-# Helpers: moda simple (valor más frecuente)
+# Helper
 mode_of() {
   # stdin -> valores, devuelve el más frecuente (si empate, el primero)
   awk '
@@ -162,18 +158,18 @@ mode_of() {
   }'
 }
 
-# Compute suggestions
+
 code_mode="$(printf "%s\n" "${codes[@]}" | mode_of)"
 size_mode="$(printf "%s\n" "${sizes[@]}" | mode_of)"
 words_mode="$(printf "%s\n" "${words[@]}" | mode_of)"
 lines_mode="$(printf "%s\n" "${lines[@]}" | mode_of)"
 
-# Si el mode es 000 (timeouts), avisar
+
 if [[ "$code_mode" == "000" ]]; then
   echo "[!] Muchas respuestas '000' (sin respuesta/timeout). Prueba a subir timeout (-t) o revisa conectividad/TLS."
 fi
 
-# Escribir reporte
+
 {
   echo "# Web Autofilter Baseline"
   echo
