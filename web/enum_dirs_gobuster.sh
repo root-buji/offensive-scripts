@@ -79,8 +79,7 @@ run() {
   [[ $DRYRUN -eq 0 ]] && "$@"
 }
 
-# Extrae host y port para carpeta
-# (sin depender de tools raras)
+
 hostport="$(echo "$URL" | sed -E 's#^[a-zA-Z]+://##' | sed -E 's#/.*$##')"
 host="$(echo "$hostport" | cut -d: -f1)"
 port="$(echo "$hostport" | awk -F: '{print ($2=="" ? "default" : $2)}')"
@@ -104,7 +103,7 @@ echo "[*] Status ok:  $STATUS_OK"
 echo "[*] Output:     $OUTFILE"
 [[ $DRYRUN -eq 1 ]] && echo "[*] Dry-run:    ON"
 
-# Construcción de args
+
 args=(dir
   -u "${URL%/}${BASE_PATH}"
   -w "$WORDLIST"
@@ -113,12 +112,11 @@ args=(dir
   --no-error
 )
 
-# Lógica correcta: whitelist O blacklist, nunca ambas
+
 if [[ -n "$STATUS_BAD" ]]; then
-  # Usuario ha pedido blacklist (-b)
   args+=(--status-codes-blacklist "$STATUS_BAD")
 else
-  # Modo por defecto: whitelist
+
   args+=(--status-codes "$STATUS_OK")
   args+=(--status-codes-blacklist "")
 fi
@@ -129,7 +127,7 @@ fi
 [[ -n "$EXTS" ]] && args+=(-x "$EXTS")
 [[ $TLS_INSECURE -eq 1 ]] && args+=(--no-tls-validation)
 
-# Headers extra
+
 for h in "${HEADERS[@]}"; do
   args+=(-H "$h")
 done
@@ -138,7 +136,7 @@ echo
 echo "[*] Ejecutando gobuster (se mostrará por pantalla y se guardará en archivo)..."
 echo
 
-# Gobuster ya imprime; usamos tee para guardar
+
 if [[ $DRYRUN -eq 1 ]]; then
   echo "[cmd] gobuster ${args[*]} | tee \"$OUTFILE\""
 else
