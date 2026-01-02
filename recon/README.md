@@ -1,4 +1,4 @@
-## Scripts incluidos
+## Scripts
 
   - `nmap_full_ip.sh`: Escaneo completo de puertos (TCP) con Nmap, guarda resultados en formatos legibles
 
