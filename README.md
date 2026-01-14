@@ -1,6 +1,6 @@
 #  Offensive Scripts
 
-Repositorio de scripts ofensivos para **automatizar tareas comunes de pentesting ético**, especialmente en las fases de reconocimiento, enumeración web, fuzzing, fuerza bruta en entornos locales o CTFs. Concretamente en el propio examen (EJPT & ECCPT) y en labs de INE me han ayudado bastante.
+EJPT & ECCPT & EWPTX - scripts útiles
 
 ---
 
@@ -15,8 +15,6 @@ Repositorio de scripts ofensivos para **automatizar tareas comunes de pentesting
 ---
 
 ##  Herramientas necesarias
-
-Este toolkit depende de herramientas comunes en entornos de hacking:
 
 - `nmap`
 - `hydra`
