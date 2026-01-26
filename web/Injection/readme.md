@@ -1,4 +1,4 @@
---- Apache Solr (​https://lucene.apache.org/solr/​)
+## Apache Solr (​https://lucene.apache.org/solr/​)
 
 
 
@@ -15,5 +15,5 @@
 - Obtengo **RCE**
 
   
---- Apache Solr DataImport Handler RCE (​https://github.com/jas502n/CVE-2019-0193​)
---- CVE-2019-0193 (​https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-0193​)
+#### Apache Solr DataImport Handler RCE (​https://github.com/jas502n/CVE-2019-0193​)
+#### CVE-2019-0193 (​https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-0193​)
