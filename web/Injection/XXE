@@ -1,4 +1,3 @@
-
 <dataConfig>
     <dataSource type="URLDataSource"/>
     <script><![CDATA[
