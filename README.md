@@ -1,6 +1,6 @@
 #  Offensive Scripts
 
-EJPT & ECCPT & EWPTX - scripts útiles
+eJPT & eCCPT & eWPTX - scripts útiles
 
 ---
 
