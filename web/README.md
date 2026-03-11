@@ -20,6 +20,7 @@ Organizado en dos categorías:
 | `wp_fuzz.sh`                  | Fuzzer    | Fuzzing dirigido a rutas sensibles en WordPress (`wp-login.php`, backups, XML-RPC, etc.) |
 | `backup_fuzz.sh`              | Fuzzer    | Busca archivos de backup comunes: `.bak`, `.zip`, `.tar.gz`, `.old` |
 | `autofilter_web.sh`           | Fuzzer    | Filtra resultados de fuzzing para eliminar falsos positivos y organizar output útil |
+| `jwt_token_generator.sh`           | Other    | Generador de JWT con firma previamente descubierta |
 
 ---
 
